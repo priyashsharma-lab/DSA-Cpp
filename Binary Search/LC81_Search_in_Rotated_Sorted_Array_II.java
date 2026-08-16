@@ -1,7 +1,7 @@
-/*Leetcode: 33. Search in Rotated Sorted Array
-Link: https://leetcode.com/problems/search-in-rotated-sorted-array/description/  */
+/*Leetcode: 81. Search in Rotated Sorted Array II
+Link: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/  */
 class Solution {
-    public int search(int[] nums, int target) 
+    public boolean search(int[] nums, int target) 
     {
         int low=0;
         int high=nums.length-1;
@@ -10,7 +10,12 @@ class Solution {
             int mid=(low+high)/2;
             if (nums[mid]==target)
             {
-                return mid;
+                return true;
+            }
+            else if (nums[low]==nums[mid] && nums[mid]==nums[high])
+            {
+                low++;
+                high--;
             }
             else if (nums[low]<=nums[mid])
             {
@@ -22,7 +27,7 @@ class Solution {
                 {
                     low=mid+1;
                 }
-            }   
+            }
             else
             {
                 if (target>=nums[mid] && target<=nums[high])
@@ -35,6 +40,6 @@ class Solution {
                 }
             }
         }    
-        return -1;
+        return false;    
     }
 }
